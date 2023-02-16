@@ -70,4 +70,4 @@ Using this combination of MVVM + Clean architecture enhances the separation of c
 This repository code is mostly inspired by [Android-Clean-Architecture-Boilerplate](https://github.com/bufferapp/android-clean-architecture-boilerplate).
 
 ## Find this repository useful? :heart:
-- Github -> [ ] 
+- Github -> [ https://github.com/DavidVegaC/Challenge-Yape.git ] 
