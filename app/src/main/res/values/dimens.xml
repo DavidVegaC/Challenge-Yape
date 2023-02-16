@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_view_radius">13dp</dimen>
+    <dimen name="_250sdp">250.00dp</dimen>
+    <dimen name="_72sdp">72.00dp</dimen>
+    <dimen name="_16sdp">16.00dp</dimen>
+    <dimen name="_20sdp">20.00dp</dimen>
+</resources>

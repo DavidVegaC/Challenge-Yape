@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sun_flower_200">#ddd10f</color>
+    <color name="sun_flower_500">#DBA900</color>
+    <color name="sun_flower_700">#D99100</color>
+    <color name="star_ship_200">#DBA800</color>
+    <color name="star_ship_700">#D56800</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_background">#E8ECEB</color>
+    <color name="color_background_dark">#24292E</color>
+    <color name="color_card_view_dark">#3B3E43</color>
+    <color name="color_text">#30353A</color>
+    <color name="colorCardview1">#ff80cbc4</color>
+    <color name="colorCollapseToolbar">@color/sun_flower_500</color>
+    <color name="red">#C64141</color>
+    <color name="hintTextColor">#787878</color>
+    <color name="colorCardview2">#F6DEDE</color>
+    <color name="gray">#f5f5f5</color>
+    <color name="darkGray">#3A3939</color>
+</resources>

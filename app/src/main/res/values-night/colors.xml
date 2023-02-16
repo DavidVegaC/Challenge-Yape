@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorCardview1">#295C48</color>
+    <color name="colorCardview2">#655353</color>
+    <color name="hintTextColor">@color/white</color>
+    <color name="colorCollapseToolbar">@color/black</color>
+</resources>

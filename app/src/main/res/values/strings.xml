@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Recetas Yape</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="title_ingredients">Ingredientes</string>
+    <string name="title_instructions">Instrucciones</string>
+    <string name="app_exit_label">Press BACK again to exit</string>
+    <string name="text_to_map">Ver origen</string>
+
+
+    <string name="title_home">Recetas</string>
+    <string name="title_detail">Detalle de Receta</string>
+    <string name="title_map">Mapa de Origen</string>
+    <string name="title_settings">Herramientas</string>
+</resources>
