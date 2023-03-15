@@ -6,7 +6,6 @@ interface RecipeDataSource {
     // Remote and cache
     suspend fun getRecipes(): List<RecipeEntity>
     suspend fun getRecipe(recipeId: Long): RecipeEntity
-    suspend fun getRecipesByName(name: String): List<RecipeEntity>
 
     // Cache
     suspend fun saveRecipes(listRecipes: List<RecipeEntity>)

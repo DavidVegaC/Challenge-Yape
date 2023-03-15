@@ -23,12 +23,6 @@ class RecipeCacheImpl @Inject constructor(
         return recipeCacheMapper.mapFromCached(recipeDao.getRecipe(recipeId))
     }
 
-    override suspend fun getRecipesByName(name: String): List<RecipeEntity> {
-        return recipeDao.getRecipesByName(name).map { cacheRecipe ->
-            recipeCacheMapper.mapFromCached(cacheRecipe)
-        }
-    }
-
     override suspend fun saveRecipes(listRecipes: List<RecipeEntity>) {
         return recipeDao.addRecipe(
             *listRecipes.map {

@@ -26,9 +26,3 @@ internal fun Fragment.showSnackBar(view: View, message: String) {
 internal fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
-
-internal inline fun <reified T : Activity> Context.startActivity(block: Intent.() -> Unit = {}) {
-    val intent = Intent(this, T::class.java)
-    block(intent)
-    startActivity(intent)
-}

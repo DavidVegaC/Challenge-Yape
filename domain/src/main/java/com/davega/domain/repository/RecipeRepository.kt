@@ -7,7 +7,6 @@ interface RecipeRepository {
     // Remote and cache
     suspend fun getRecipes(): Flow<List<Recipe>>
     suspend fun getRecipe(recipeId: Long): Flow<Recipe>
-    suspend fun getRecipeByName(name: String): Flow<List<Recipe>>
 
     // Cache
     suspend fun saveRecipes(listRecipes: List<Recipe>)

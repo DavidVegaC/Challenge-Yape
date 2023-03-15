@@ -17,10 +17,6 @@ class RecipeRemoteDataSource @Inject constructor(
         return recipeRemote.getRecipe(recipeId)
     }
 
-    override suspend fun getRecipesByName(name: String): List<RecipeEntity> {
-        throw UnsupportedOperationException("Get Recipes By Name is not supported for RemoteDataSource.")
-    }
-
     override suspend fun saveRecipes(listRecipes: List<RecipeEntity>) {
         throw UnsupportedOperationException("Save Recipe is not supported for RemoteDataSource.")
     }

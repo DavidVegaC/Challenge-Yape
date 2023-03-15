@@ -28,37 +28,6 @@ abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragm
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observerEvents()
-    }
-
-    private fun observerEvents() {
-        viewModel.apply {
-            /*isLoading.observe(viewLifecycleOwner, {
-                handleLoading(it == true)
-            })
-            errorMessage.observe(viewLifecycleOwner, {
-                handleErrorMessage(it)
-            })
-            noInternetConnectionEvent.observe(viewLifecycleOwner, {
-                handleErrorMessage(getString(R.string.no_internet_connection))
-            })
-            connectTimeoutEvent.observe(viewLifecycleOwner, {
-                handleErrorMessage(getString(R.string.connect_timeout))
-            })
-            forceUpdateAppEvent.observe(viewLifecycleOwner, {
-                handleErrorMessage(getString(R.string.force_update_app))
-            })
-            serverMaintainEvent.observe(viewLifecycleOwner, {
-                handleErrorMessage(getString(R.string.server_maintain_message))
-            })
-            unknownErrorEvent.observe(viewLifecycleOwner, {
-                handleErrorMessage(getString(R.string.unknown_error))
-            })*/
-        }
-    }
-
     protected open fun handleLoading(isLoading: Boolean) {
         if (isLoading) showLoadingDialog() else dismissLoadingDialog()
     }

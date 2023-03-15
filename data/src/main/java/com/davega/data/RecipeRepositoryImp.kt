@@ -33,13 +33,6 @@ class RecipeRepositoryImp @Inject constructor(
         )
     }
 
-    override suspend fun getRecipeByName(name: String): Flow<List<Recipe>> = flow {
-        val recipeList = dataSourceFactory.getCacheDataSource().getRecipesByName(name).map { recipeEntity ->
-            recipeMapper.mapFromEntity(recipeEntity)
-        }
-        emit(recipeList)
-    }
-
     override suspend fun saveRecipes(listRecipes: List<Recipe>) {
         val recipeEntities = listRecipes.map { recipe ->
             recipeMapper.mapToEntity(recipe)

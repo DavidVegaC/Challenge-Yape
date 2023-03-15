@@ -15,9 +15,6 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes WHERE  id = :id")
     fun getRecipe(id: Long): RecipeCacheEntity
 
-    @Query("SELECT * FROM recipes WHERE title LIKE '%' || :name || '%' OR ingredients LIKE '%' || :name || '%'")
-    fun getRecipesByName(name: String): List<RecipeCacheEntity>
-
     @Query("DELETE FROM recipes")
     fun clearRecipes(): Int
 

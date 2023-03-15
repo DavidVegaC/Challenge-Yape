@@ -16,10 +16,6 @@ class RecipeCacheDataSource @Inject constructor(
         return recipeCache.getRecipe(recipeId)
     }
 
-    override suspend fun getRecipesByName(name: String): List<RecipeEntity> {
-        return recipeCache.getRecipesByName(name)
-    }
-
     override suspend fun saveRecipes(listRecipes: List<RecipeEntity>) {
         return recipeCache.saveRecipes(listRecipes)
     }

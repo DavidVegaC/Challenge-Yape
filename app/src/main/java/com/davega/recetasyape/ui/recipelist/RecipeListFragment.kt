@@ -81,8 +81,11 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding, BaseViewModel
     private fun onViewStateChange(event: RecipeUIModel) {
         if (event.isRedelivered) return
         when (event) {
-            is RecipeUIModel.Error -> handleErrorMessage(event.error)
-            RecipeUIModel.Loading -> handleLoading(true)
+            is RecipeUIModel.Error -> {
+                handleLoading(false)
+                handleErrorMessage(event.error)
+            }
+            is RecipeUIModel.Loading -> handleLoading(true)
             is RecipeUIModel.Success -> {
                 handleLoading(false)
                 event.data.let {
