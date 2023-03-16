@@ -1,4 +1,7 @@
 # Recetas Yape
+
+- [Challenge](https://drive.google.com/file/d/1bdWs-nwdLCCaRn5k-8UbJcLRx5MNewUo/view?usp=share_link) - Challenge Instructions
+
 The Recetas Yape - App consumes a [Recipes API](https://63e87ffa5f3e35d898f15901.mockapi.io/api/v1/recipes), api created using [mock api.io](https://mockapi.io/). This app allows to display Recipes which has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Component Architecture, respecting SOLID principles.
 Allows us to store API responses in a local database, allowing us to work offline with this data (cache).
 
