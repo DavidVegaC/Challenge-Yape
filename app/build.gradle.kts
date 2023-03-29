@@ -35,10 +35,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.4"
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        compose = true
         viewBinding = true
     }
 }
@@ -91,6 +95,19 @@ dependencies {
 
     //google-maps
     implementation("com.google.android.gms:play-services-maps:18.1.0")
+
+    //COMPOSE
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.compose.runtime:runtime")
+    implementation("androidx.compose.material:material")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.foundation:foundation-layout")
+    implementation("androidx.compose.animation:animation")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
 
     //test
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
