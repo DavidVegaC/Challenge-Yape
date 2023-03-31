@@ -6,6 +6,7 @@ The Recetas Yape - App consumes a [Recipes API](https://63e87ffa5f3e35d898f15901
 Allows us to store API responses in a local database, allowing us to work offline with this data (cache).
 
 This app shows the usage of the new Navigation Architecture Component in collaboration with the Bottom Navigation view with separate back stack history for each tab.
+Some views are in compose, as part of the migration from viewbinding to Jetpack Compose.
 
 **App features:**
 - Food Recipes
@@ -58,6 +59,7 @@ Using this combination of MVVM + Clean architecture enhances the separation of c
     - [Room](https://developer.android.com/topic/libraries/architecture/room) - Used to create room db and store the data.
     - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - Used to navigate between fragments
     - [Data Binding](https://developer.android.com/topic/libraries/data-binding) - Used to bind UI components in your XML layouts.
+    - [Compose](https://developer.android.com/jetpack/compose) - Used to build user interfaces in a declarative way.
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
 - [Retrofit](https://github.com/square/retrofit) - Used for REST api communication.
 - [OkHttp](http://square.github.io/okhttp/) - HTTP client that's efficient by default: HTTP/2 support allows all requests to the same host to share a socket

@@ -103,9 +103,11 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.foundation:foundation-layout")
     implementation("androidx.compose.animation:animation")
-    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.ui:ui-tooling")
+    implementation("com.google.accompanist:accompanist-themeadapter-material:0.28.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.4.0")
     implementation("io.coil-kt:coil-compose:2.2.2")
 
 
