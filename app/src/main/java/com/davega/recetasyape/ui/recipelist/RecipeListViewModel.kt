@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import javax.inject.Inject
 
-
 sealed class RecipeUIModel : UiAwareModel() {
     object Loading : RecipeUIModel()
     data class Error(var error: String = "") : RecipeUIModel()

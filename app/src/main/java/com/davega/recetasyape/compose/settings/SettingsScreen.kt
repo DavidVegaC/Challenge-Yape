@@ -17,6 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davega.domain.models.SettingType
 import com.davega.domain.models.Settings
 import com.davega.recetasyape.R
+import com.davega.recetasyape.compose.utils.LoadingUtils
 import com.davega.recetasyape.compose.utils.SnackbarUtils
 import com.davega.recetasyape.core.theme.ThemeUtils
 import com.davega.recetasyape.core.theme.ThemeUtilsImp
@@ -125,16 +126,30 @@ fun SettingsContent(
     settingsViewModel: SettingsViewModel = viewModel(),
     themeUtils: ThemeUtils = ThemeUtilsImp()
 ) {
+
+    var isSettingLoading by remember { mutableStateOf(false) }
+
     val responseSettings by settingsViewModel.settings.observeAsState()
     settingsViewModel.getSettings()
+
+    if (isSettingLoading) {
+        LoadingUtils()
+    }
+
 
     Column(modifier = modifier) {
         SettingsTitle()
 
         when (responseSettings) {
-            //is SettingUIModel.Loading -> handleLoading(true)
-            is SettingUIModel.Error -> SnackbarUtils((responseSettings as SettingUIModel.Error).error)
-            is SettingUIModel.Success -> SettingsContentItems((responseSettings as SettingUIModel.Success).data, settingsViewModel)
+            is SettingUIModel.Loading -> isSettingLoading  = true
+            is SettingUIModel.Error -> {
+                isSettingLoading  = false
+                SnackbarUtils((responseSettings as SettingUIModel.Error).error)
+            }
+            is SettingUIModel.Success -> {
+                isSettingLoading  = false
+                SettingsContentItems((responseSettings as SettingUIModel.Success).data, settingsViewModel)
+            }
             is SettingUIModel.NightMode -> (responseSettings as SettingUIModel.NightMode).nightMode.let { themeUtils.setNightMode(it) }
             else -> {}
         }

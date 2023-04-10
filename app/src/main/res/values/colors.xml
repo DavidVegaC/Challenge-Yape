@@ -5,6 +5,8 @@
     <color name="sun_flower_700">#D99100</color>
     <color name="star_ship_200">#DBA800</color>
     <color name="star_ship_700">#D56800</color>
+    <color name="search_view">#F3D368</color>
+    <color name="card_item_recipe">@color/white</color>
     <color name="black">#FF000000</color>
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
