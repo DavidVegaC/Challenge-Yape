@@ -38,6 +38,7 @@ import com.davega.recetasyape.ui.recipelist.RecipeListFragmentDirections
 import com.davega.recetasyape.ui.recipelist.RecipeListViewModel
 import com.davega.recetasyape.ui.recipelist.RecipeUIModel
 import com.google.accompanist.themeadapter.material.MdcTheme
+import java.lang.StringBuilder
 import java.util.*
 
 @Composable
@@ -139,8 +140,6 @@ fun RecipeListItem(recipe: Recipe, onItemClick: (Int) -> Unit, modifier: Modifie
             }
         }
     }
-
-
 }
 
 @Composable
@@ -157,8 +156,7 @@ fun RecipeList(
         } else {
             val resultList = ArrayList<Recipe>()
             for (recipe in listRecipe) {
-                if (recipe.title.uppercase().contains(searchedText, true)
-                ) {
+                if (validateFilter(recipe, searchedText)) {
                     resultList.add(recipe)
                 }
             }
@@ -282,4 +280,15 @@ fun RecipeListPreview() {
             ), state = textState
         )
     }
+}
+
+private fun validateFilter(recipe: Recipe, searchedText: String) =
+    recipe.title.uppercase().contains(searchedText, true) || convertIngredientListToString(recipe.ingredients).contains(searchedText, true)
+
+private fun convertIngredientListToString(ingredients: List<String>): String {
+    val ingredientsString = StringBuilder()
+    for (ingredient in ingredients) {
+        ingredientsString.append("$ingredient;")
+    }
+    return ingredientsString.toString()
 }
