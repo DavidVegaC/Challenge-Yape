@@ -94,7 +94,14 @@ dependencies {
     }
 
     //google-maps
-    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
+    implementation("com.google.maps.android:maps-v3-ktx:3.4.0")
+    constraints {
+        // Volley is a transitive dependency of maps
+        implementation("com.android.volley:volley:1.2.1") {
+            because("Only volley 1.2.0 or newer are available on maven.google.com")
+        }
+    }
 
     //COMPOSE
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))

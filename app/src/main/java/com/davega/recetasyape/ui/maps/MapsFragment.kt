@@ -2,37 +2,52 @@ package com.davega.recetasyape.ui.maps
 
 import android.os.Bundle
 import android.view.View
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.davega.recetasyape.R
 import com.davega.recetasyape.base.BaseFragment
 import com.davega.recetasyape.base.BaseViewModel
+import com.davega.recetasyape.compose.maps.DetailsScreen
 import com.davega.recetasyape.databinding.FragmentMapsBinding
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.accompanist.themeadapter.material.MdcTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MapsFragment : BaseFragment<FragmentMapsBinding, BaseViewModel>(), OnMapReadyCallback {
+class MapsFragment : BaseFragment<FragmentMapsBinding, BaseViewModel>() {
     override val viewModel: MapsViewModel  by viewModels()
 
     override fun getViewBinding(): FragmentMapsBinding = FragmentMapsBinding.inflate(layoutInflater)
 
     private val args: MapsFragmentArgs by navArgs()
 
-    private lateinit var map: GoogleMap
-    private var latOriginFood:Double = 23232323.0
-    private var lngOriginFood:Double = -122132.2
+    private var latOriginFood: Double = 23232323.0
+    private var lngOriginFood: Double = -122132.2
     private var nameFood: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupArgs()
-        setupMaps()
+        binding.composeView.apply {
+            setViewCompositionStrategy(
+                ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+            )
+            setContent {
+                // You're in Compose world!
+                MdcTheme {
+                    Surface {
+                        DetailsScreen(
+                            modifier = Modifier.systemBarsPadding(),
+                            latOriginFood = latOriginFood,
+                            lngOriginFood = lngOriginFood,
+                            nameFood = nameFood
+                        )
+                    }
+                }
+            }
+        }
     }
 
     private fun setupArgs(){
@@ -41,27 +56,5 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, BaseViewModel>(), OnMapRe
         nameFood = args.name
     }
 
-    private fun setupMaps(){
-        val mapsFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapsFragment.getMapAsync(this)
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-        createMarker()
-    }
-
-    private fun createMarker(){
-        val coordinates = LatLng(latOriginFood, lngOriginFood)
-        val marker = MarkerOptions().position(coordinates).title(nameFood)
-        map.addMarker(marker)
-        map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordinates, 18f),
-            3000,
-            null
-        )
-
-    }
-
-
 }
+
