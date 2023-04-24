@@ -1,4 +1,4 @@
-package com.davega.recetasyape.ui.settings
+package com.davega.recetasyape.ui.viewmodel.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

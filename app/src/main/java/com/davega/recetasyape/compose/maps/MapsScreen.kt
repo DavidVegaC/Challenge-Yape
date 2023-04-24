@@ -20,23 +20,12 @@ import com.google.maps.android.ktx.awaitMap
 import kotlinx.coroutines.launch
 
 @Composable
-fun DetailsScreen(
-    modifier: Modifier = Modifier,
-    latOriginFood: Double,
-    lngOriginFood: Double,
-    nameFood: String
-) {
-    DetailsContent(latOriginFood, lngOriginFood, nameFood, modifier.fillMaxSize())
-}
-
-@Composable
 fun DetailsContent(
     latOriginFood: Double,
     lngOriginFood: Double,
     nameFood: String,
-    modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.Center) {
+    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
         Spacer(Modifier.height(25.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),

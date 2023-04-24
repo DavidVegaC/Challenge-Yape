@@ -1,4 +1,4 @@
-package com.davega.recetasyape.ui.recipedetail
+package com.davega.recetasyape.ui.viewmodel.recipedetail
 
 import androidx.lifecycle.LiveData
 import com.davega.domain.interactor.GetRecipeByIdUseCase

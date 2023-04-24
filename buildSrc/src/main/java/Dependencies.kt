@@ -16,14 +16,6 @@ object Dependencies {
 
     const val roomCompilerKapt = "androidx.room:room-compiler:${Versions.room_version}"
 
-    val lifeCycle = listOf(
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycleVersion}",
-        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifeCycleVersion}",
-        "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExtensionsVersion}",
-        "androidx.lifecycle:lifecycle-runtime:${Versions.lifeCycleVersion}",
-        "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycleVersion}"
-    )
-
     val daggerHilt = listOf(
         "com.google.dagger:hilt-android:${Versions.hiltAndroidVersion}",
     )

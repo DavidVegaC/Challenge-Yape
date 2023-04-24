@@ -1,4 +1,4 @@
-package com.davega.recetasyape.ui.maps
+package com.davega.recetasyape.ui.viewmodel.maps
 
 import com.davega.recetasyape.base.BaseViewModel
 import com.davega.recetasyape.utils.CoroutineContextProvider

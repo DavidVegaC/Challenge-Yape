@@ -24,9 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -34,9 +33,9 @@ import com.davega.domain.models.Recipe
 import com.davega.recetasyape.R
 import com.davega.recetasyape.compose.utils.LoadingUtils
 import com.davega.recetasyape.compose.utils.SnackbarUtils
-import com.davega.recetasyape.ui.recipedetail.RecipeDetailFragmentDirections
-import com.davega.recetasyape.ui.recipedetail.RecipeDetailUIModel
-import com.davega.recetasyape.ui.recipedetail.RecipeDetailViewModel
+import com.davega.recetasyape.navigation.Screen
+import com.davega.recetasyape.ui.viewmodel.recipedetail.RecipeDetailUIModel
+import com.davega.recetasyape.ui.viewmodel.recipedetail.RecipeDetailViewModel
 import com.google.accompanist.themeadapter.material.MdcTheme
 
 
@@ -174,11 +173,10 @@ private fun Body(
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RecipeDetailContent(
-    idRecipe: Long,
     navController: NavController,
-    modifier: Modifier = Modifier,
-    recipeDetailViewModel: RecipeDetailViewModel = viewModel()
+    idRecipe: Long
 ) {
+    val recipeDetailViewModel = hiltViewModel<RecipeDetailViewModel>()
     val responseRecipeDetail by recipeDetailViewModel.getRecipe().observeAsState()
 
     var isRecipeDetailLoading by remember { mutableStateOf(false) }
@@ -200,17 +198,12 @@ fun RecipeDetailContent(
         is RecipeDetailUIModel.Success -> {
             isRecipeDetailLoading = false
             Column(
-                modifier = modifier
+                modifier = Modifier.fillMaxSize()
             ) {
                 CollapsingToolbar(
                     recipe = (responseRecipeDetail as RecipeDetailUIModel.Success).data,
                     onItemClick = { latFood, lngFood, nameFood ->
-                        val action: NavDirections =
-                            RecipeDetailFragmentDirections.actionRecipeDetailFragmentToMapsFragment(
-                                latFood,
-                                lngFood,
-                                nameFood
-                            )
+                        val action: String = Screen.RecipeOrigin.route.plus("/${latFood}/${lngFood}/${nameFood}")
                         navController.navigate(action)
                     })
             }

@@ -13,6 +13,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davega.domain.models.SettingType
 import com.davega.domain.models.Settings
@@ -21,9 +22,11 @@ import com.davega.recetasyape.compose.utils.LoadingUtils
 import com.davega.recetasyape.compose.utils.SnackbarUtils
 import com.davega.recetasyape.core.theme.ThemeUtils
 import com.davega.recetasyape.core.theme.ThemeUtilsImp
-import com.davega.recetasyape.ui.settings.SettingUIModel
-import com.davega.recetasyape.ui.settings.SettingsViewModel
+import com.davega.recetasyape.ui.viewmodel.settings.SettingUIModel
+import com.davega.recetasyape.ui.viewmodel.settings.SettingsViewModel
 import com.google.accompanist.themeadapter.material.MdcTheme
+import javax.inject.Inject
+
 
 @Composable
 fun SettingsTitle(modifier: Modifier = Modifier) {
@@ -121,14 +124,10 @@ fun SettingsContentItems(listSettings: List<Settings>, settingsViewModel: Settin
 }
 
 @Composable
-fun SettingsContent(
-    modifier: Modifier = Modifier,
-    settingsViewModel: SettingsViewModel = viewModel(),
-    themeUtils: ThemeUtils = ThemeUtilsImp()
-) {
-
+fun SettingsContent(themeUtils : ThemeUtils = ThemeUtilsImp()) {
     var isSettingLoading by remember { mutableStateOf(false) }
 
+    val settingsViewModel = hiltViewModel<SettingsViewModel>()
     val responseSettings by settingsViewModel.settings.observeAsState()
     settingsViewModel.getSettings()
 
@@ -137,7 +136,7 @@ fun SettingsContent(
     }
 
 
-    Column(modifier = modifier) {
+    Column(modifier = Modifier.fillMaxSize()) {
         SettingsTitle()
 
         when (responseSettings) {

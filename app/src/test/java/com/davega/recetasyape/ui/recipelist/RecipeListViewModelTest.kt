@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.davega.domain.interactor.GetRecipeListUseCase
 import com.davega.fakes.FakeData
 import com.davega.fakes.flattenToList
+import com.davega.recetasyape.ui.viewmodel.recipelist.RecipeListViewModel
+import com.davega.recetasyape.ui.viewmodel.recipelist.RecipeUIModel
 import com.davega.recetasyape.utils.CoroutineContextProvider
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

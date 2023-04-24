@@ -24,19 +24,20 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.davega.domain.models.Recipe
 import com.davega.recetasyape.R
+import com.davega.recetasyape.compose.component.appbar.AppBarWithArrow
 import com.davega.recetasyape.compose.utils.LoadingUtils
 import com.davega.recetasyape.compose.utils.SnackbarUtils
-import com.davega.recetasyape.ui.recipelist.RecipeListFragmentDirections
-import com.davega.recetasyape.ui.recipelist.RecipeListViewModel
-import com.davega.recetasyape.ui.recipelist.RecipeUIModel
+import com.davega.recetasyape.navigation.Screen
+import com.davega.recetasyape.navigation.navigationTitle
+import com.davega.recetasyape.ui.viewmodel.recipelist.RecipeListViewModel
+import com.davega.recetasyape.ui.viewmodel.recipelist.RecipeUIModel
 import com.google.accompanist.themeadapter.material.MdcTheme
 import java.lang.StringBuilder
 import java.util.*
@@ -104,7 +105,7 @@ fun RecipeListItem(recipe: Recipe, onItemClick: (Int) -> Unit, modifier: Modifie
             .padding(horizontal = 17.dp)
             .padding(top = 9.dp, bottom = 3.dp)
             .fillMaxWidth()
-    ){
+    ) {
         Row {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -167,10 +168,7 @@ fun RecipeList(
                 recipe = filteredRecipe,
                 onItemClick = { selectedRecipe ->
                     /* Add code later */
-                    val action: NavDirections =
-                        RecipeListFragmentDirections.actionRecipeListFragmentToRecipeDetailFragment(
-                            selectedRecipe
-                        )
+                    val action: String = Screen.RecipeDetail.route.plus("/${selectedRecipe}")
                     navController.navigate(action)
                 }
             )
@@ -180,10 +178,9 @@ fun RecipeList(
 
 @Composable
 fun RecipeListContent(
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    recipeListViewModel: RecipeListViewModel = viewModel()
+    navController: NavController
 ) {
+    val recipeListViewModel = hiltViewModel<RecipeListViewModel>()
     val responseRecipeList by recipeListViewModel.getRecipeList().observeAsState()
 
     var isRecipeListLoading by remember { mutableStateOf(false) }
@@ -204,10 +201,11 @@ fun RecipeListContent(
             isRecipeListLoading = false
             SnackbarUtils((responseRecipeList as RecipeUIModel.Error).error)
         }
+
         is RecipeUIModel.Success -> {
             isRecipeListLoading = false
             Column(
-                modifier = modifier
+                modifier = Modifier.fillMaxSize()
             ) {
                 SearchView(textState)
                 RecipeList(
@@ -217,7 +215,12 @@ fun RecipeListContent(
                 )
             }
         }
-        else -> {}
+
+        else -> {
+            AppBarWithArrow(navigationTitle(navController)) {
+                navController.popBackStack()
+            }
+        }
     }
 }
 
@@ -283,7 +286,11 @@ fun RecipeListPreview() {
 }
 
 private fun validateFilter(recipe: Recipe, searchedText: String) =
-    recipe.title.uppercase().contains(searchedText, true) || convertIngredientListToString(recipe.ingredients).contains(searchedText, true)
+    recipe.title.uppercase()
+        .contains(searchedText, true) || convertIngredientListToString(recipe.ingredients).contains(
+        searchedText,
+        true
+    )
 
 private fun convertIngredientListToString(ingredients: List<String>): String {
     val ingredientsString = StringBuilder()
